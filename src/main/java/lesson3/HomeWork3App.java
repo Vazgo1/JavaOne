@@ -57,7 +57,7 @@ public class HomeWork3App {
     public static void lenInitialValue (int len, int initialValue ){
        int[] arr = new int[len];
          Arrays.fill(arr, initialValue);
-        System.out.println(Arrays.toString(arr));
+        //System.out.println(Arrays.toString(arr));
 
 
 
