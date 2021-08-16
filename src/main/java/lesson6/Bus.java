@@ -1,38 +1,14 @@
 package lesson6;
 
-public class Bus {
-    private String number;
-    private int capacity;
+public class Bus extends Transport {
 
-    public String getNumber() {
-        return number;
-    }
 
-    public void setNumber(String number) {
-        this.number = number;
-    }
+    private String model;
 
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
-
-    public int getPower() {
-        return power;
-    }
-
-    public void setPower(int power) {
-        this.power = power;
-    }
-
-    private  int power;
-
-    public Bus(String number, int capacity, int power) {
-        this.number = number;
-        this.capacity = capacity;
-        this.power = power;
+    public Bus(String name, int capacity, String model) {
+        this.name = name;
+        this.capacity =capacity;
+        this.model = model;
     }
 }
+

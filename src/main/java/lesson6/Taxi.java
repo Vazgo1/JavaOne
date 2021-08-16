@@ -1,14 +1,7 @@
 package lesson6;
 
-
-public class OOpDemoApp {
+public class Taxi {
     private String number;
     private int capacity;
-    private String type;
     private String tariff;
-    private int power;
-
-
-
-
 }
