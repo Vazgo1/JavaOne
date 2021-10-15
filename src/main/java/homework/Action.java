@@ -6,7 +6,8 @@ public interface Action {
     String getName();
 
     default int goObstaclesInterface (int var, String name, String type) {
-    if (var <= 5){
+
+        if (var <= 5){
         System.out.println( name + " смог пробежать - " + type);
         return 1;
     }

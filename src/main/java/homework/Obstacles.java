@@ -9,7 +9,7 @@ public interface Obstacles {
     //Получение случайного числа (сложность препятствия).
     default int getVar() {
         while (true) {
-            int var = (int) (Math.random() * 10);
+            int var = (int) (Math.random() * 5);
             return var;
         }
     }

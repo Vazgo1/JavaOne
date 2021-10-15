@@ -46,9 +46,9 @@ public class HomeWork3App {
                     arr4[i][j] = 1;
                 }
                 arr4[i][arr4.length - i - 1] = 1;
-                //System.out.print(arr4[i][j] + " ");
+                System.out.print(arr4[i][j] + " ");
             }
-           // System.out.println();
+            System.out.println();
 
         }
 
@@ -57,7 +57,7 @@ public class HomeWork3App {
     public static void lenInitialValue (int len, int initialValue ){
        int[] arr = new int[len];
          Arrays.fill(arr, initialValue);
-        //System.out.println(Arrays.toString(arr));
+        System.out.println(Arrays.toString(arr));
 
 
 
