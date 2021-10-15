@@ -10,8 +10,8 @@ public class Exception {
                 arrayString[arr1][arr2] = String.valueOf(a);
             }
         }
-        arrayString [0][1] = "5";
-        arrayString [0][2] = "df";
+        arrayString [0][1] = "4";
+        arrayString [0][2] = "d";
 
         arrayMethod(arrayString);
     }

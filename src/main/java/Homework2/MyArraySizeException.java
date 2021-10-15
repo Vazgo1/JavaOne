@@ -10,6 +10,7 @@ public class MyArraySizeException extends ArrayIndexOutOfBoundsException {
         }catch (MyArraySizeException se) {
             System.out.println( "MyArraySizeException" + " Массив не верныой длинны");
             return true;
+
         }
         return false;
     }
