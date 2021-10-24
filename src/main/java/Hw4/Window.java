@@ -6,6 +6,10 @@ import java.awt.event.ActionListener;
 
 public class Window extends JFrame {
 
+    public static void main(String[] args) {
+       new Window();
+    }
+
     private final static String newLine = "\n";
 
     public Window() {
