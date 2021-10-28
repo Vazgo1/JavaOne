@@ -19,8 +19,6 @@ public class App {
         }
 
 
-
-
         // int newAmountOfFood =  plate.getAmountOfFood() - cat.getAppetit();
         // plate.setAmountOfFood(newAmountOfFood);
         // plate.decreaseAmountOfFood(cat.getAppetit ());
@@ -35,8 +33,6 @@ public class App {
             System.out.println(plate);
 
         }
-
-
 
 
     }
