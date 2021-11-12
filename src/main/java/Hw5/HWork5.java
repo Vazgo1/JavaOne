@@ -2,13 +2,13 @@ package Hw5;
 
 public class HWork5 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         firstMethod();
-        try {
+       // try {
             secondMethod();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+      //  } catch (InterruptedException e) {
+        //    e.printStackTrace();
+       // }
 
     }
 

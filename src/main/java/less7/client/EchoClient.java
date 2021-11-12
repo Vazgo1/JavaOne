@@ -1,4 +1,6 @@
-package less6;
+package less7.client;
+
+import less7.constants.Constants;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,27 +22,28 @@ public class EchoClient extends JFrame {
     private Socket socket;
     private DataInputStream dataInputStream;
     private DataOutputStream dataOutputStream;
-
+    private String login;
 
 
     public EchoClient() {
         try {
             openConnection();
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         prepareUI();
 
     }
 
-    private void openConnection () throws IOException {
-        socket = new Socket(SERVER_ADDRESS, SERVER_PORT);
+    private void openConnection() throws IOException {
+        socket = new Socket(Constants.SERVER_ADDRESS, Constants.SERVER_PORT);
         dataInputStream = new DataInputStream(socket.getInputStream());
         dataOutputStream = new DataOutputStream(socket.getOutputStream());
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+        new Thread( () -> {
+            
+
+
 
                 try {
                     while (true) {
@@ -49,21 +52,29 @@ public class EchoClient extends JFrame {
 
                         if (messageFromServer.equals("/end")) {
                             break;
+                        }else if (messageFromServer.startsWith(Constants.AUTH_OK_COMMAND)){
+                            String[] tokens = messageFromServer.split("\\s+");
+                            this.login = tokens [1];
+                            textArea.append("успешно авторизован " + login);
+                            textArea.append("\n");
+
+                        } else if (messageFromServer.startsWith(Constants.CLIENTS_LIST_COMMAND)) {
+                            // список клиеньов
+                        } else {
+
+                            textArea.append(messageFromServer);
+                            textArea.append("\n");
                         }
-
-                        textArea.append(messageFromServer);
-                        textArea.append("\n");
                     }
-
                     textArea.append("Соединение разорвано");
                     textField.setEnabled(false);
                     closeConnection();
 
-                }catch (Exception ex) {
+                } catch (Exception ex) {
                     ex.printStackTrace();
                 }
 
-            }
+
         }).start();
 
     }
@@ -72,20 +83,20 @@ public class EchoClient extends JFrame {
         try {
             dataOutputStream.close();
 
-        }catch (Exception ex) {
+        } catch (Exception ex) {
 
         }
 
         try {
             dataInputStream.close();
 
-        }catch (Exception ex) {
+        } catch (Exception ex) {
 
         }
 
         try {
             socket.close();
-        }catch (Exception ex) {
+        } catch (Exception ex) {
 
         }
     }
@@ -98,15 +109,15 @@ public class EchoClient extends JFrame {
             dataOutputStream.writeUTF(textField.getText());
             textField.setText("");
             textField.grabFocus();
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
-    private void prepareUI () {
+    private void prepareUI() {
 
         setBounds(200, 200, 500, 500);
-        setTitle("EchoClient");
+        setTitle("EchoClient1");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         textArea = new JTextArea();
@@ -121,6 +132,30 @@ public class EchoClient extends JFrame {
         panel.add(textField, BorderLayout.CENTER);
 
         add(panel, BorderLayout.SOUTH);
+
+        JPanel loginPanel = new JPanel(new BorderLayout());
+        JTextField loginField = new JTextField();
+        loginPanel.add(loginField, BorderLayout.WEST);
+        JTextField passField = new JTextField();
+        loginPanel.add(passField, BorderLayout.CENTER);
+        JButton authButton = new JButton("Авторизоваться");
+        loginPanel.add(authButton, BorderLayout.EAST);
+        add(loginPanel, BorderLayout.NORTH);
+
+        authButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+
+
+                    dataOutputStream.writeUTF(Constants.AUTH_COMMAND + " " + loginField.getText() + " " + passField.getText());
+                } catch (IOException IOException) {
+                    IOException.printStackTrace();
+
+                }
+            }
+        });
+
 
         button.addActionListener(e -> sendMessage());
 
